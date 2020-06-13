@@ -1,5 +1,4 @@
 import styles from "./styles.jsx";
-import run from "uebersicht";
 
 const containerStyle = {
   display: "grid",
@@ -11,6 +10,13 @@ const desktopStyle = {
   width: "3ch",
 };
 
+const textBusyStyle = {
+  color: "red",
+}
+
+const textFreeStyle = {
+  color: "green",
+}
 
 const renderSpace = (index, focused, visible, windows) => {
   let contentStyle = JSON.parse(JSON.stringify(desktopStyle));
@@ -22,11 +28,9 @@ const renderSpace = (index, focused, visible, windows) => {
     contentStyle.color = styles.colors.fg;
   }
   return (
-    <div style={contentStyle}>
-      {focused ? "[" : <span>&nbsp;</span> }
-      {index}
-      {!focused && hasWindows ? "°" : null }
-      {focused ? "]" : <span>&nbsp;</span> }
+    <div style={contentStyle} key={index} >
+      {focused ? "🐵" : "🙈" }
+      {hasWindows ? <span style={textBusyStyle}>&nbsp;Busy</span> : <span style={textFreeStyle}>&nbsp;Free</span> }
     </div>
   );
 };
